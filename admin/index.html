@@ -1,1 +1,117 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GreenWave Admin</title><link rel="stylesheet" href="admin.css"></head><body><header><a href="../">← View site</a><b>GreenWave Admin</b></header><main><h1>Content dashboard</h1><p class="note">V2 lets you add, edit and delete catalogue information. Data is stored in this browser for now; private cloud audio upload comes next.</p><section><h2>Add / edit release</h2><form id="form"><input type="hidden" id="id"><label>Title<input id="title" required></label><label>Artist / Creator<input id="artist" required></label><label>Category<select id="category"><option>Afrobeats</option><option>Amapiano</option><option>Hip-Hop</option><option>R&B</option><option>Gospel</option><option>Podcasts</option></select></label><label>Audio URL (temporary)<input id="audioUrl"></label><button>Add release</button></form></section><section><h2>Catalogue <small id="total"></small></h2><div id="list"></div></section><section><h2>Next build</h2><div class="road"><b>01 Admin UI — READY</b><b>02 Cloud audio storage — NEXT</b><b>03 Secure upload API — NEXT</b><b>04 Real player/downloads — NEXT</b></div></section></main><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GreenWave Admin Control Center</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span>G</span><strong>GreenWave</strong><small>CONTROL CENTER</small></div>
+  <a href="../" target="_blank">Open site ↗</a>
+</header>
+<div class="layout">
+<aside>
+  <button class="tab active" data-tab="dashboard">Overview</button>
+  <button class="tab" data-tab="global">Global settings</button>
+  <button class="tab" data-tab="header">Header</button>
+  <button class="tab" data-tab="hero">Hero</button>
+  <button class="tab" data-tab="stats">Quick stats</button>
+  <button class="tab" data-tab="latest">Latest releases</button>
+  <button class="tab" data-tab="categories">Categories</button>
+  <button class="tab" data-tab="popular">Popular downloads</button>
+  <button class="tab" data-tab="artists">Artists</button>
+  <button class="tab" data-tab="player">Player</button>
+  <button class="tab" data-tab="footer">Footer</button>
+  <button class="tab" data-tab="seo">SEO & sharing</button>
+  <button class="tab" data-tab="publish">Publish</button>
+</aside>
+<main>
+<section id="dashboard" class="page active">
+  <p class="eyebrow">SITE MANAGEMENT</p><h1>Control every part of the site.</h1>
+  <p class="lead">This admin is separated from the public UI. Nothing on the main page links back here.</p>
+  <div class="cards"><div><b>12</b><span>Editable areas</span></div><div><b>6</b><span>Release fields</span></div><div><b>6</b><span>Categories</span></div><div><b>4</b><span>Artist slots</span></div></div>
+  <div class="notice"><b>Important:</b> the uploaded <code>index.html</code> is preserved exactly. This dashboard is the management layer; it does not redesign the public UI.</div>
+</section>
+
+<section id="global" class="page"><h2>Global settings</h2><p class="muted">Identity and site-wide values.</p>
+<div class="grid">
+<label>Site name<input data-key="site.name" value="GreenWave"></label>
+<label>Logo text<input data-key="site.logo" value="G"></label>
+<label>Primary color<input data-key="theme.primary" value="#002900"></label>
+<label>Secondary color<input data-key="theme.secondary" value="#009A00"></label>
+<label>Accent color<input data-key="theme.accent" value="#F5C810"></label>
+<label>Default language<input data-key="site.language" value="en"></label>
+</div></section>
+
+<section id="header" class="page"><h2>Header</h2><div class="grid">
+<label>Brand name<input data-key="header.brand" value="GreenWave"></label>
+<label>Explore button text<input data-key="header.cta" value="Explore Media"></label>
+<label>Explore button link<input data-key="header.ctaLink" value="#latest"></label>
+<label>Home label<input data-key="header.home" value="Home"></label>
+<label>Latest label<input data-key="header.latest" value="Latest"></label>
+<label>Categories label<input data-key="header.categories" value="Categories"></label>
+<label>Popular label<input data-key="header.popular" value="Popular"></label>
+<label>Artists label<input data-key="header.artists" value="Artists"></label>
+</div></section>
+
+<section id="hero" class="page"><h2>Hero</h2><div class="grid">
+<label>Eyebrow<input data-key="hero.eyebrow" value="MUSIC • AUDIO • MEDIA"></label>
+<label>Headline line 1<input data-key="hero.line1" value="Discover it."></label>
+<label>Headline line 2<input data-key="hero.line2" value="Play it."></label>
+<label>Headline line 3<input data-key="hero.line3" value="Download it."></label>
+<label class="wide">Hero description<textarea data-key="hero.text">A clean, fast home for discovering high-quality audio and multimedia from independent creators.</textarea></label>
+<label>Primary button<input data-key="hero.primaryText" value="Explore latest"></label>
+<label>Primary link<input data-key="hero.primaryLink" value="#latest"></label>
+<label>Secondary button<input data-key="hero.secondaryText" value="Browse categories"></label>
+<label>Secondary link<input data-key="hero.secondaryLink" value="#categories"></label>
+<label>Release badge<input data-key="hero.badge" value="NEW / RELEASE"></label>
+<label>Quality badge<input data-key="hero.quality" value="320 / KBPS"></label>
+</div></section>
+
+<section id="stats" class="page"><h2>Quick stats</h2><div id="statsEditor" class="repeat"></div></section>
+
+<section id="latest" class="page"><h2>Latest releases</h2><div class="toolbar"><button id="addRelease" class="primary">+ Add release</button><button id="importDemo">Load demo releases</button></div><div id="releaseEditor" class="repeat"></div></section>
+
+<section id="categories" class="page"><h2>Categories</h2><p class="muted">Edit every category label and supporting text.</p><div id="categoryEditor" class="repeat"></div></section>
+
+<section id="popular" class="page"><h2>Popular downloads</h2><div class="grid">
+<label>Section eyebrow<input data-key="popular.eyebrow" value="TRENDING NOW"></label>
+<label>Section title<input data-key="popular.title" value="Popular downloads"></label>
+<label>Ranking rule<select data-key="popular.rule"><option value="downloads">Most downloads</option><option value="manual">Manual order</option><option value="recent">Most recent</option></select></label>
+</div></section>
+
+<section id="artists" class="page"><h2>Artists</h2><div id="artistEditor" class="repeat"></div></section>
+
+<section id="player" class="page"><h2>Audio player</h2><div class="grid">
+<label>Empty title<input data-key="player.emptyTitle" value="Select a track"></label>
+<label>Empty artist<input data-key="player.emptyArtist" value="Nothing playing"></label>
+<label>Download tooltip<input data-key="player.downloadTitle" value="Download"></label>
+<label>Player enabled<select data-key="player.enabled"><option>true</option><option>false</option></select></label>
+</div></section>
+
+<section id="footer" class="page"><h2>Footer</h2><div class="grid">
+<label>Brand<input data-key="footer.brand" value="GreenWave"></label>
+<label class="wide">Description<textarea data-key="footer.text">Independent multimedia discovery, built for creators and listeners.</textarea></label>
+<label>About link<input data-key="footer.about" value="#"></label>
+<label>Contact link<input data-key="footer.contact" value="#"></label>
+<label>Privacy link<input data-key="footer.privacy" value="#"></label>
+<label>Copyright<input data-key="footer.copyright" value="© 2026 GreenWave. All rights reserved."></label>
+</div></section>
+
+<section id="seo" class="page"><h2>SEO & sharing</h2><div class="grid">
+<label>Page title<input data-key="seo.title" value="GreenWave — Music & Media"></label>
+<label class="wide">Meta description<textarea data-key="seo.description">A modern multimedia discovery and download platform.</textarea></label>
+<label>Social image URL<input data-key="seo.image"></label>
+<label>Canonical URL<input data-key="seo.canonical"></label>
+</div></section>
+
+<section id="publish" class="page"><h2>Save & publish</h2>
+<div class="notice">For the final live editor, connect this admin to your GitHub repository through a secure publishing workflow. Do not hard-code GitHub, R2, or other private tokens into the site.</div>
+<div class="toolbar"><button id="saveLocal" class="primary">Save dashboard data</button><button id="downloadConfig">Export content JSON</button><label class="filebtn">Import content JSON<input id="importConfig" type="file" accept=".json"></label></div>
+<pre id="status">Ready.</pre>
+</section>
+</main></div>
+<script src="admin.js"></script>
+</body></html>

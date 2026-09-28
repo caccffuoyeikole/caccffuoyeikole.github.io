@@ -1,10 +1,114 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GreenWave Media</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header><a class="brand" href="#home"><b>G</b> GreenWave</a><button id="menu">☰</button><nav id="nav"><a href="#home">Home</a><a href="#latest">Latest</a><a href="#categories">Categories</a><a href="#popular">Popular</a><a href="#artists">Artists</a></nav><a class="admin" href="admin/">Admin</a></header>
-<section class="hero" id="home"><div><small>INDEPENDENT MEDIA PLATFORM</small><h1>Discover it.<br><em>Play it.</em><br>Download it.</h1><p>Fresh music and media from independent creators, in one self-controlled platform.</p><a class="btn" href="#latest">Explore releases</a></div><div class="heroart">♪</div></section>
-<div class="stats"><div><b id="count">0</b><span>Releases</span></div><div><b>6</b><span>Categories</span></div><div><b>4</b><span>Creators</span></div><div><b>24/7</b><span>Access</span></div></div>
-<main><section id="latest"><div class="head"><div><small>NEW & FRESH</small><h2>Latest releases</h2></div></div><div class="search"><input id="q" placeholder="Search titles, artists or categories..."><select id="cat"><option>All categories</option><option>Afrobeats</option><option>Amapiano</option><option>Hip-Hop</option><option>R&B</option><option>Gospel</option><option>Podcasts</option></select></div><div class="grid" id="grid"></div></section>
-<section class="dark" id="categories"><small>BROWSE</small><h2>Categories</h2><div class="cats"><button data-cat="Afrobeats">Afrobeats →</button><button data-cat="Amapiano">Amapiano →</button><button data-cat="Hip-Hop">Hip-Hop →</button><button data-cat="R&B">R&B →</button><button data-cat="Gospel">Gospel →</button><button data-cat="Podcasts">Podcasts →</button></div></section>
-<section id="popular"><small>MOST DOWNLOADED</small><h2>Popular now</h2><div id="popularList"></div></section>
-<section id="artists"><small>CREATORS</small><h2>Featured artists</h2><div class="artists"><article>AO<strong>Artist One</strong><span>Afrobeats</span></article><article>AT<strong>Artist Two</strong><span>Amapiano</span></article><article>AR<strong>Artist Three</strong><span>Hip-Hop</span></article><article>AF<strong>Artist Four</strong><span>R&B</span></article></div></section></main>
-<footer><div class="brand"><b>G</b> GreenWave</div><p>Independent media, built for creators.</p></footer>
-<div class="player" id="player"><b>♪</b><span id="now">Select a release</span><button id="play">▶</button><button id="close">×</button></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern multimedia discovery and download platform.">
+  <title>GreenWave — Music & Media</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">G</span><span>GreenWave</span></a>
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#latest">Latest</a>
+      <a href="#categories">Categories</a>
+      <a href="#popular">Popular</a>
+      <a href="#artists">Artists</a>
+    </nav>
+    <a class="header-download" href="#latest">Explore Media</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">MUSIC • AUDIO • MEDIA</p>
+        <h1>Discover it.<br><span>Play it.</span><br>Download it.</h1>
+        <p class="hero-text">A clean, fast home for discovering high-quality audio and multimedia from independent creators.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#latest">Explore latest</a>
+          <a class="btn btn-outline" href="#categories">Browse categories</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="disc"><div class="disc-center"></div></div>
+        <div class="floating-card card-one">NEW<br><strong>RELEASE</strong></div>
+        <div class="floating-card card-two">320<br><small>KBPS</small></div>
+      </div>
+    </section>
+
+    <section class="quick-stats">
+      <div><strong>01</strong><span>Fresh releases</span></div>
+      <div><strong>02</strong><span>High-quality audio</span></div>
+      <div><strong>03</strong><span>Fast downloads</span></div>
+      <div><strong>04</strong><span>Creator-focused</span></div>
+    </section>
+
+    <section class="section" id="latest">
+      <div class="section-heading">
+        <div><p class="eyebrow">UPDATED REGULARLY</p><h2>Latest releases</h2></div>
+        <a href="#" class="text-link">View all →</a>
+      </div>
+      <div class="media-grid" id="latestGrid"></div>
+    </section>
+
+    <section class="section categories" id="categories">
+      <div class="section-heading">
+        <div><p class="eyebrow">EXPLORE</p><h2>Browse by category</h2></div>
+      </div>
+      <div class="category-grid">
+        <button data-category="Afrobeats"><span>AF</span><b>Afrobeats</b><small>Explore sounds</small></button>
+        <button data-category="Hip-Hop"><span>HH</span><b>Hip-Hop</b><small>Explore sounds</small></button>
+        <button data-category="Amapiano"><span>AM</span><b>Amapiano</b><small>Explore sounds</small></button>
+        <button data-category="R&B"><span>RB</span><b>R&B</b><small>Explore sounds</small></button>
+        <button data-category="Gospel"><span>GO</span><b>Gospel</b><small>Explore sounds</small></button>
+        <button data-category="Podcasts"><span>PC</span><b>Podcasts</b><small>Explore sounds</small></button>
+      </div>
+    </section>
+
+    <section class="section dark-panel" id="popular">
+      <div class="section-heading">
+        <div><p class="eyebrow">TRENDING NOW</p><h2>Popular downloads</h2></div>
+      </div>
+      <div class="popular-list" id="popularList"></div>
+    </section>
+
+    <section class="section artist-section" id="artists">
+      <div class="section-heading">
+        <div><p class="eyebrow">CREATORS</p><h2>Featured artists</h2></div>
+        <a href="#" class="text-link">All artists →</a>
+      </div>
+      <div class="artist-grid">
+        <article class="artist"><div class="avatar">01</div><h3>Artist One</h3><p>Afrobeats</p></article>
+        <article class="artist"><div class="avatar">02</div><h3>Artist Two</h3><p>Amapiano</p></article>
+        <article class="artist"><div class="avatar">03</div><h3>Artist Three</h3><p>R&B</p></article>
+        <article class="artist"><div class="avatar">04</div><h3>Artist Four</h3><p>Hip-Hop</p></article>
+      </div>
+    </section>
+  </main>
+
+  <div class="player" id="player">
+    <div class="now-playing">
+      <div class="mini-cover" id="miniCover">♪</div>
+      <div><strong id="playerTitle">Select a track</strong><small id="playerArtist">Nothing playing</small></div>
+    </div>
+    <button class="play-btn" id="playBtn">▶</button>
+    <div class="player-progress"><span id="progress"></span></div>
+    <span class="time" id="time">0:00</span>
+    <button class="download-mini" id="downloadBtn" title="Download">↓</button>
+    <audio id="audio"></audio>
+  </div>
+
+  <footer>
+    <div class="footer-brand"><span class="brand-mark">G</span><strong>GreenWave</strong></div>
+    <p>Independent multimedia discovery, built for creators and listeners.</p>
+    <div class="footer-links"><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy</a></div>
+    <small>© 2026 GreenWave. All rights reserved.</small>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
