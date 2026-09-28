@@ -1,18 +1,26 @@
-GREENWAVE V4
+GREENWAVE V5 — SECURE ADMIN LOGIN
 
 Public UI:
-- index.html is the user's supplied file, preserved unchanged.
-- css/style.css is the user's supplied stylesheet, preserved unchanged.
-- js/app.js is wired to content.json without changing the HTML structure.
+- index.html is preserved from V4.
+- css/style.css is preserved from V4.
+- js/app.js is preserved from V4.
 
 Admin:
 - /admin/
-- Admin is not linked from the public site.
-- Controls global settings, header, hero, stats, releases, categories, popular section, artists, player, footer and SEO.
-- Local save/export/import.
-- Optional GitHub publishing updates content.json through the GitHub Contents API using a token entered by the admin at publish time. The token is not embedded in the site.
+- No Admin link is added to the public site.
+- Admin now requires email/password authentication.
+- The admin email can be a Gmail address.
+- The password is a separate password for this admin account; it is NOT your Gmail password.
+- GitHub username/repository/token fields have been removed from the dashboard.
+- Publishing is performed by a Supabase Edge Function.
+- The GitHub personal access token is stored as a server secret and is never exposed to the browser.
 
-Important:
-- This does not upload audio files yet. It stores/edit their audio URLs and cover URLs.
-- Do not commit a GitHub token into any source file.
-- For production audio uploads, add a secure storage/upload layer (e.g. Cloudflare R2 via a serverless endpoint).
+SETUP:
+1. Create a Supabase project.
+2. Enable Email authentication and create the admin user.
+3. Put the Supabase project URL and anon key into admin/config.js.
+4. Deploy supabase/functions/publish-content.
+5. Configure the function secrets described in supabase/README.md.
+6. Deploy the public site and /admin/ to GitHub Pages.
+
+This V5 changes the admin authentication/publishing architecture. It does not redesign the public site.

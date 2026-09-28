@@ -36,15 +36,28 @@ document.addEventListener("click",e=>{const b=e.target.closest(".navbtn");if(b){
 document.getElementById("save").onclick=()=>{localStorage.setItem(KEY,JSON.stringify(data));status.textContent="Saved locally: "+new Date().toLocaleString()};
 document.getElementById("export").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="content.json";a.click()};
 document.getElementById("import").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);localStorage.setItem(KEY,JSON.stringify(data));location.reload()}catch{status.textContent="Invalid content JSON."}};r.readAsText(f)};
+const SUPABASE_URL=window.GREENWAVE_SUPABASE_URL;
+const SUPABASE_ANON_KEY=window.GREENWAVE_SUPABASE_ANON_KEY;
+const hasSupabaseConfig=SUPABASE_URL && SUPABASE_ANON_KEY && !SUPABASE_URL.includes("YOUR_") && !SUPABASE_ANON_KEY.includes("YOUR_");
+const supabaseClient=hasSupabaseConfig ? window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY) : null;
+const loginScreen=document.getElementById("loginScreen"), appScreen=document.getElementById("appScreen"), loginForm=document.getElementById("loginForm"), loginStatus=document.getElementById("loginStatus"), userEmail=document.getElementById("userEmail"), logoutBtn=document.getElementById("logout");
+function showApp(user){loginScreen.hidden=true;appScreen.hidden=false;userEmail.textContent=user?.email||"";renderAll()}
+function showLogin(){appScreen.hidden=true;loginScreen.hidden=false}
+if(!hasSupabaseConfig){loginStatus.textContent="Admin setup is incomplete: add your Supabase URL and anon key to admin/config.js.";loginForm.querySelector("button").disabled=true}else{
+ loginForm.onsubmit=async(e)=>{e.preventDefault();loginStatus.textContent="Signing in…";const {data,error}=await supabaseClient.auth.signInWithPassword({email:loginEmail.value.trim(),password:loginPassword.value});if(error){loginStatus.textContent=error.message;return}loginPassword.value="";showApp(data.user)};
+ logoutBtn.onclick=async()=>{await supabaseClient.auth.signOut();showLogin()};
+ supabaseClient.auth.getSession().then(({data})=>{if(data.session)showApp(data.session.user);else showLogin()});
+ supabaseClient.auth.onAuthStateChange((_event,session)=>{if(session)showApp(session.user);else showLogin()});
+}
 document.getElementById("publish").onclick=async()=>{
- const user=ghUser.value.trim(),repo=ghRepo.value.trim(),token=ghToken.value.trim(); if(!user||!repo||!token){status.textContent="Enter GitHub username, repository and token.";return}
- status.textContent="Publishing content.json…";
+ if(!supabaseClient){status.textContent="Supabase is not configured.";return}
+ status.textContent="Publishing content.json securely…";
  try{
-  const api=`https://api.github.com/repos/${encodeURIComponent(user)}/${encodeURIComponent(repo)}/contents/content.json`;
-  const headers={Authorization:`Bearer ${token}`,Accept:"application/vnd.github+json","Content-Type":"application/json"};
-  let sha;const old=await fetch(api,{headers});if(old.ok){sha=(await old.json()).sha}
-  const body={message:"Update site content from GreenWave Admin",content:btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))))};if(sha)body.sha=sha;
-  const r=await fetch(api,{method:"PUT",headers,body:JSON.stringify(body)});if(!r.ok)throw new Error(await r.text());status.textContent="Published successfully. GitHub Pages may take a short time to update.";
+  const result=await supabaseClient.functions.invoke("publish-content",{body:{content:data}});
+  const fnData=result.data, error=result.error;
+  if(error)throw new Error(error.message||"The publish function failed.");
+  if(!fnData?.ok)throw new Error(fnData?.error||"Publish failed.");
+  status.textContent="Published successfully. GitHub Pages may take a short time to update.";
  }catch(err){status.textContent="Publish failed: "+err.message}
 };
 renderAll();

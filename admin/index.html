@@ -1,4 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GreenWave Admin</title><link rel="stylesheet" href="admin.css"></head><body>
-<header><div class="brand"><span>G</span><strong>GreenWave</strong><small>ADMIN</small></div><a href="../" target="_blank">Preview site ↗</a></header>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GreenWave Admin</title><link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="loginScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="brand"><span>G</span><strong>GreenWave</strong><small>ADMIN</small></div>
+    <p class="eyebrow">PRIVATE CONTROL CENTER</p>
+    <h1>Sign in to your dashboard</h1>
+    <p class="muted">Use your admin email address and the password you created for this dashboard.</p>
+    <form id="loginForm">
+      <label>Email address<input id="loginEmail" type="email" autocomplete="email" required placeholder="you@gmail.com"></label>
+      <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Your admin password"></label>
+      <button class="primary" type="submit">Sign in</button>
+    </form>
+    <p id="loginStatus" class="status"></p>
+    <p class="security-note">Your GitHub personal access token is not entered here and is not stored in this browser.</p>
+  </div>
+</div>
+<div id="appScreen" hidden>
+<header><div class="brand"><span>G</span><strong>GreenWave</strong><small>ADMIN</small></div><div class="head-actions"><span id="userEmail"></span><button id="logout">Sign out</button><a href="../" target="_blank">Preview site ↗</a></div></header>
 <div class="shell"><aside id="side"></aside><main id="main"></main></div>
-<script src="admin.js"></script></body></html>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
