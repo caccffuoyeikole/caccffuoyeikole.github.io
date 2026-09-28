@@ -1,27 +1,18 @@
-GREENWAVE ADMIN V3
+GREENWAVE V4
 
-The supplied public index.html is preserved byte-for-byte.
+Public UI:
+- index.html is the user's supplied file, preserved unchanged.
+- css/style.css is the user's supplied stylesheet, preserved unchanged.
+- js/app.js is wired to content.json without changing the HTML structure.
 
 Admin:
-  /admin/
+- /admin/
+- Admin is not linked from the public site.
+- Controls global settings, header, hero, stats, releases, categories, popular section, artists, player, footer and SEO.
+- Local save/export/import.
+- Optional GitHub publishing updates content.json through the GitHub Contents API using a token entered by the admin at publish time. The token is not embedded in the site.
 
-The public index contains no admin link. The admin is intentionally separate.
-
-This build provides a structured control center for:
-- global identity/theme values
-- header
-- hero
-- quick stats
-- releases
-- categories
-- popular section settings
-- artists
-- player
-- footer
-- SEO/sharing
-- export/import content JSON
-
-IMPORTANT:
-The uploaded source included only index.html. Its referenced css/style.css and js/app.js were not supplied in this upload. Therefore this package does NOT overwrite those files and does not claim to have wired the editor into the existing runtime yet.
-
-For true live "edit every nook and cranny" publishing, the next integration must use the site's actual css/style.css and js/app.js (and a secure publishing path). This avoids changing the UI accidentally.
+Important:
+- This does not upload audio files yet. It stores/edit their audio URLs and cover URLs.
+- Do not commit a GitHub token into any source file.
+- For production audio uploads, add a secure storage/upload layer (e.g. Cloudflare R2 via a serverless endpoint).

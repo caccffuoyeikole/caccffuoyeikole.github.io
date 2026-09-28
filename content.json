@@ -1,0 +1,190 @@
+{
+  "site": {
+    "name": "GreenWave",
+    "logo": "G",
+    "language": "en"
+  },
+  "theme": {
+    "primary": "#002900",
+    "secondary": "#009A00",
+    "accent": "#F5C810"
+  },
+  "header": {
+    "brand": "GreenWave",
+    "cta": "Explore Media",
+    "ctaLink": "#latest",
+    "home": "Home",
+    "latest": "Latest",
+    "categories": "Categories",
+    "popular": "Popular",
+    "artists": "Artists"
+  },
+  "hero": {
+    "eyebrow": "MUSIC \u2022 AUDIO \u2022 MEDIA",
+    "line1": "Discover it.",
+    "line2": "Play it.",
+    "line3": "Download it.",
+    "text": "A clean, fast home for discovering high-quality audio and multimedia from independent creators.",
+    "primaryText": "Explore latest",
+    "primaryLink": "#latest",
+    "secondaryText": "Browse categories",
+    "secondaryLink": "#categories",
+    "badge": "NEW",
+    "badgeStrong": "RELEASE",
+    "quality": "320",
+    "qualityLabel": "KBPS"
+  },
+  "stats": [
+    {
+      "number": "01",
+      "text": "Fresh releases"
+    },
+    {
+      "number": "02",
+      "text": "High-quality audio"
+    },
+    {
+      "number": "03",
+      "text": "Fast downloads"
+    },
+    {
+      "number": "04",
+      "text": "Creator-focused"
+    }
+  ],
+  "latest": {
+    "eyebrow": "UPDATED REGULARLY",
+    "title": "Latest releases",
+    "viewAll": "View all \u2192",
+    "viewAllLink": "#latest"
+  },
+  "releases": [
+    {
+      "title": "Midnight Drive",
+      "artist": "Artist One",
+      "category": "Afrobeats",
+      "downloads": 4821,
+      "letter": "M",
+      "audioUrl": "",
+      "coverUrl": "",
+      "featured": false
+    },
+    {
+      "title": "Golden Hour",
+      "artist": "Artist Two",
+      "category": "Amapiano",
+      "downloads": 3910,
+      "letter": "G",
+      "audioUrl": "",
+      "coverUrl": "",
+      "featured": false
+    },
+    {
+      "title": "No Pressure",
+      "artist": "Artist Three",
+      "category": "Hip-Hop",
+      "downloads": 3254,
+      "letter": "N",
+      "audioUrl": "",
+      "coverUrl": "",
+      "featured": false
+    },
+    {
+      "title": "Afterglow",
+      "artist": "Artist Four",
+      "category": "R&B",
+      "downloads": 2876,
+      "letter": "A",
+      "audioUrl": "",
+      "coverUrl": "",
+      "featured": false
+    }
+  ],
+  "categories": [
+    {
+      "code": "AF",
+      "name": "Afrobeats",
+      "description": "Explore sounds"
+    },
+    {
+      "code": "HH",
+      "name": "Hip-Hop",
+      "description": "Explore sounds"
+    },
+    {
+      "code": "AM",
+      "name": "Amapiano",
+      "description": "Explore sounds"
+    },
+    {
+      "code": "RB",
+      "name": "R&B",
+      "description": "Explore sounds"
+    },
+    {
+      "code": "GO",
+      "name": "Gospel",
+      "description": "Explore sounds"
+    },
+    {
+      "code": "PC",
+      "name": "Podcasts",
+      "description": "Explore sounds"
+    }
+  ],
+  "popular": {
+    "eyebrow": "TRENDING NOW",
+    "title": "Popular downloads"
+  },
+  "artists": {
+    "eyebrow": "CREATORS",
+    "title": "Featured artists",
+    "allText": "All artists \u2192",
+    "allLink": "#artists",
+    "items": [
+      {
+        "avatar": "01",
+        "name": "Artist One",
+        "category": "Afrobeats"
+      },
+      {
+        "avatar": "02",
+        "name": "Artist Two",
+        "category": "Amapiano"
+      },
+      {
+        "avatar": "03",
+        "name": "Artist Three",
+        "category": "R&B"
+      },
+      {
+        "avatar": "04",
+        "name": "Artist Four",
+        "category": "Hip-Hop"
+      }
+    ]
+  },
+  "player": {
+    "emptyTitle": "Select a track",
+    "emptyArtist": "Nothing playing",
+    "downloadTitle": "Download",
+    "enabled": true
+  },
+  "footer": {
+    "brand": "GreenWave",
+    "text": "Independent multimedia discovery, built for creators and listeners.",
+    "aboutText": "About",
+    "aboutLink": "#",
+    "contactText": "Contact",
+    "contactLink": "#",
+    "privacyText": "Privacy",
+    "privacyLink": "#",
+    "copyright": "\u00a9 2026 GreenWave. All rights reserved."
+  },
+  "seo": {
+    "title": "GreenWave \u2014 Music & Media",
+    "description": "A modern multimedia discovery and download platform.",
+    "canonical": "",
+    "socialImage": ""
+  }
+}
